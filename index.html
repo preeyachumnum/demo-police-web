@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Police Case Assist - Demo Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="background-shape shape-a"></div>
+  <div class="background-shape shape-b"></div>
+
+  <main class="app-shell">
+    <section class="header-card">
+      <p class="tag">DEMO MOCKUP</p>
+      <h1>แพลตฟอร์มช่วยจัดทำสำนวนคดี</h1>
+      <p class="subtitle">
+        ผู้เสียหายกรอกข้อมูลด้วยตนเอง ระบบตรวจความครบถ้วน และสร้างเอกสารราชการอัตโนมัติ
+        เพื่อพิมพ์ ลงชื่อ และใช้ประกอบสำนวนคดี
+      </p>
+    </section>
+
+    <section class="wizard-wrap">
+      <aside class="wizard-sidebar">
+        <h2>ขั้นตอนการกรอกข้อมูล</h2>
+        <ul id="stepList" class="step-list"></ul>
+        <div class="progress-group">
+          <div class="progress-meta">
+            <span>ความคืบหน้า</span>
+            <strong id="progressText">0%</strong>
+          </div>
+          <div class="progress-track">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+        </div>
+        <button id="fillMockBtn" class="secondary-btn" type="button">โหลดข้อมูลตัวอย่าง</button>
+      </aside>
+
+      <section class="wizard-main">
+        <form id="caseForm" novalidate>
+          <div class="step-pane" data-step="0">
+            <h3>ข้อมูลผู้เสียหาย</h3>
+            <div class="grid-2">
+              <label>ชื่อ-นามสกุล
+                <input name="victimName" required>
+              </label>
+              <label>เลขบัตรประชาชน
+                <input name="victimId" required maxlength="13" inputmode="numeric">
+              </label>
+              <label>เบอร์โทรศัพท์
+                <input name="victimPhone" required inputmode="tel">
+              </label>
+              <label>อีเมล
+                <input name="victimEmail" type="email">
+              </label>
+            </div>
+            <label>ที่อยู่
+              <textarea name="victimAddress" required rows="3"></textarea>
+            </label>
+          </div>
+
+          <div class="step-pane" data-step="1">
+            <h3>ข้อมูลคดีเบื้องต้น</h3>
+            <div class="grid-2">
+              <label>ประเภทคดี
+                <select name="caseType" required>
+                  <option value="">-- เลือกประเภทคดี --</option>
+                  <option>ฉ้อโกงออนไลน์</option>
+                  <option>ลักทรัพย์</option>
+                  <option>ทำร้ายร่างกาย</option>
+                  <option>ทรัพย์สินเสียหาย</option>
+                  <option>อื่นๆ</option>
+                </select>
+              </label>
+              <label>วันที่เกิดเหตุ
+                <input name="incidentDate" type="date" required>
+              </label>
+              <label>เวลาโดยประมาณ
+                <input name="incidentTime" type="time" required>
+              </label>
+              <label>สถานที่เกิดเหตุ
+                <input name="incidentPlace" required>
+              </label>
+            </div>
+            <label>มูลค่าความเสียหายโดยประมาณ (บาท)
+              <input name="damageValue" type="number" min="0" step="100">
+            </label>
+            <label>รายละเอียดเหตุการณ์
+              <textarea name="incidentDetail" required rows="5"></textarea>
+            </label>
+          </div>
+
+          <div class="step-pane" data-step="2">
+            <h3>ข้อมูลผู้เกี่ยวข้องและหลักฐาน</h3>
+            <label>ข้อมูลผู้ต้องสงสัย (ถ้ามี)
+              <textarea name="suspectInfo" rows="3" placeholder="ชื่อ, ช่องทางติดต่อ, บัญชีธนาคาร, หมายเลขทะเบียน ฯลฯ"></textarea>
+            </label>
+            <label>พยานหรือผู้เห็นเหตุการณ์
+              <textarea name="witnessInfo" rows="3"></textarea>
+            </label>
+            <fieldset>
+              <legend>หลักฐานที่มี</legend>
+              <div class="check-grid">
+                <label><input type="checkbox" name="evidence" value="ภาพถ่าย"> ภาพถ่าย</label>
+                <label><input type="checkbox" name="evidence" value="วิดีโอ"> วิดีโอ</label>
+                <label><input type="checkbox" name="evidence" value="สลิปโอนเงิน"> สลิปโอนเงิน</label>
+                <label><input type="checkbox" name="evidence" value="ข้อความแชต"> ข้อความแชต</label>
+                <label><input type="checkbox" name="evidence" value="พยานบุคคล"> พยานบุคคล</label>
+                <label><input type="checkbox" name="evidence" value="เอกสารอื่นๆ"> เอกสารอื่นๆ</label>
+              </div>
+            </fieldset>
+            <label>หมายเหตุเพิ่มเติม
+              <textarea name="additionalNote" rows="3"></textarea>
+            </label>
+          </div>
+
+          <div class="step-pane" data-step="3">
+            <h3>ตรวจสอบข้อมูลและสร้างเอกสาร</h3>
+            <div id="reviewBox" class="review-box"></div>
+            <div class="cta-panel">
+              <button id="generateBtn" class="primary-btn" type="button">สร้างเอกสารอัตโนมัติ</button>
+              <button id="printBtn" class="secondary-btn" type="button" disabled>พิมพ์/บันทึกเป็น PDF</button>
+              <button id="wordBtn" class="secondary-btn" type="button" disabled>ดาวน์โหลด Word</button>
+              <button id="pdfBtn" class="secondary-btn" type="button" disabled>ดาวน์โหลด PDF (Mock)</button>
+            </div>
+            <p id="formMessage" class="form-message" aria-live="polite"></p>
+          </div>
+
+          <div class="wizard-actions">
+            <button id="prevBtn" type="button">ย้อนกลับ</button>
+            <button id="nextBtn" class="primary-btn" type="button">ถัดไป</button>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <section class="documents-wrap">
+      <h2>ผลลัพธ์เอกสารที่สร้างอัตโนมัติ (Mockup)</h2>
+      <div class="doc-grid">
+        <article class="doc-card">
+          <h3>คำร้องทุกข์</h3>
+          <textarea id="complaintDoc" readonly rows="12" placeholder="ยังไม่ได้สร้างเอกสาร"></textarea>
+        </article>
+        <article class="doc-card">
+          <h3>บันทึกประจำวัน</h3>
+          <textarea id="dailyDoc" readonly rows="12" placeholder="ยังไม่ได้สร้างเอกสาร"></textarea>
+        </article>
+        <article class="doc-card">
+          <h3>พฤติการณ์แห่งคดี</h3>
+          <textarea id="circumstanceDoc" readonly rows="12" placeholder="ยังไม่ได้สร้างเอกสาร"></textarea>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
