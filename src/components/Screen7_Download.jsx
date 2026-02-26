@@ -68,10 +68,15 @@ const Screen7_Download = () => {
         <div className="card text-center">
           <CheckCircle size={64} color="var(--success)" style={{ margin: '0 auto 1.5rem' }} />
           <h2 className="mb-4">ดาวน์โหลดสำเร็จ!</h2>
-          <p className="text-muted mb-6">ไฟล์ PDF ถูกบันทึกลงในเครื่องของคุณเรียบร้อยแล้ว หากต้องการเริ่มคดีใหม่ให้กดปุ่มด้านล่าง ข้อมูลปัจจุบันจะถูกล้างทิ้งเพื่อความปลอดภัย</p>
-          <button className="btn btn-primary" onClick={resetData}>
-            เริ่มสร้างสำนวนคดีใหม่
-          </button>
+          <p className="text-muted mb-6" style={{ fontSize: '0.95rem' }}>ไฟล์ PDF ถูกบันทึกลงในเครื่องของคุณเรียบร้อยแล้ว<br/>คุณสามารถกลับไปแก้ไขข้อมูลเพื่อสร้างเอกสารใหม่ หรือ เริ่มคดีใหม่</p>
+          <div className="flex flex-col gap-3">
+            <button className="btn btn-secondary" onClick={() => setDone(false)}>
+              <ArrowLeft size={18} /> กลับไปแก้ไขข้อมูล (แบบร่างยังอยู่)
+            </button>
+            <button className="btn btn-primary" onClick={resetData}>
+              เริ่มสร้างสำนวนคดีใหม่ (ล้างข้อมูลเก่า)
+            </button>
+          </div>
         </div>
       )}
 
